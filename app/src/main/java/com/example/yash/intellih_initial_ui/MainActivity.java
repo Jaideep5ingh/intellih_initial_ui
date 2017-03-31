@@ -2,6 +2,8 @@ package com.example.yash.intellih_initial_ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
@@ -19,5 +21,25 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        recyclerView = (RecyclerView) findViewById(R.id.my_recycler_view);
+        recyclerView.setHasFixedSize(true);
+
+        layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+
+        data = new ArrayList<DataModel>();
+        addData();
+        adapter = new CustomAdapter(data);
+        recyclerView.setAdapter(adapter);
+    }
+
+    void addData(){
+        data.add(new DataModel("Bed Room",R.drawable.kid));
+        data.add(new DataModel("Drawing Room",R.drawable.kid));
+        data.add(new DataModel("Kids Room",R.drawable.kid));
+        data.add(new DataModel("Kitchen",R.drawable.kid));
     }
 }
